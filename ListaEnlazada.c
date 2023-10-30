@@ -33,16 +33,20 @@ void addNode( struct node** head, int n, int p ){
 // Eliminar nodos con valor n
 void elimNode( struct node** head, int n ){
 	struct node *temp = *head;
-	
+	struct node *temp2;
 	while(temp->val == n){
+		temp2 = *head;
 		*head = temp->next;
 		temp = *head;
+		free(temp2);
 	}
 	
 	//Borra todos con el valor menos el primero
 	while(temp->next != NULL){
 		if(temp->next->val == n){	
+			temp2 = temp->next;
 			temp->next = temp->next->next;
+			free(temp2);
 		}
 		temp = temp->next;
 	}
